@@ -1,0 +1,23 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "I'm going to use playwright\r .",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mbeatrizba/Testing.git"
+  },
+  "author": "Beatriz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mbeatrizba/Testing/issues"
+  },
+  "homepage": "https://github.com/Mbeatrizba/Testing#readme",
+  "dependencies": {
+    "@playwright/test": "^1.33.0",
+    "prettier": "^2.8.8"
+  }
+}
