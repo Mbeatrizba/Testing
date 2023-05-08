@@ -56,3 +56,36 @@ test.describe("My fist test suite", () => {
     await expect(nonExistingElement).not.toBeVisible();
   });
 });
+
+//Playwright screenshots
+
+test("Screenshots", async ({ page }) => {
+  //1. step is load website
+  await page.goto("http://example.com/");
+  //2. take screenshot off full page
+  await page.screenshot({ path: "screenshot.png", fullPage: true });
+});
+
+test("Single element Screenshot", async ({ page }) => {
+  await page.goto("http://example.com/");
+  const element = await page.$("h1");
+  await element.screenshot({ path: "single_element_screenshot.png" });
+});
+
+test.describe.only("Hooks", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("http://example.com/");
+  });
+  test("Screenshots", async ({ page }) => {
+    //1. step is load website
+    // await page.goto("http://example.com/");
+    //2. take screenshot off full page
+    await page.screenshot({ path: "screenshot.png", fullPage: true });
+  });
+
+  test("Single element Screenshot", async ({ page }) => {
+    // await page.goto("http://example.com/");
+    const element = await page.$("h1");
+    await element.screenshot({ path: "single_element_screenshot.png" });
+  });
+});
