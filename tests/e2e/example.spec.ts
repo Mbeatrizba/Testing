@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
 
+import { loadHomepage, assertTitle } from "../../helpers";
+
 test.describe("My fist test suite", () => {
   test("simple basic test", async ({ page }) => {
     //Opens webpage
@@ -72,7 +74,7 @@ test("Single element Screenshot", async ({ page }) => {
   await element.screenshot({ path: "single_element_screenshot.png" });
 });
 
-test.describe.only("Hooks", () => {
+test.describe.parallel.only("Hooks", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("http://example.com/");
   });
@@ -88,4 +90,10 @@ test.describe.only("Hooks", () => {
     const element = await page.$("h1");
     await element.screenshot({ path: "single_element_screenshot.png" });
   });
+});
+
+test("Custom Helpers", async ({ page }) => {
+  await loadHomepage(page);
+  //await page.pause()
+  await assertTitle(page);
 });

@@ -43,16 +43,35 @@ Then I started to put the configurations that I want, for example:
 To conclude, when I have all the configurations I export the config:
 `export default config;`
 
-##Summary2.0
-I can use different types of reports, to use I have to put in the terminal:
+## Summary2.0
+
+I can use different types of reports:
+Put in the terminal:
 `npx playwright test --config=playwright.config.ts --project=chromium --reporter=.....`
-I can use 'line', which just shows if the test passed or not,
-I can use 'list', which shows where it found the information,
-I can use 'dot', which just shows a green dot if the test passes or red if doesn't pass,
+I can use 'line', which just shows if the test passes or not,
+I can use 'list', which shows more information,
+I can use 'dot', which just shows a green dot if the test is correct or red if isn't,
 I can use 'HTML' which gives me a folder that gives me a report of all the tests, timing, and results.
 
 I also learn how to screenshot a page,
-If I only want to take a screenshot of a full page, I just have to create an:
+If I only want to take a screenshot of a full page, I just have to put this information on the terminal:
 `await page.screenshot` and a path
-If I want to take a screenshot of something in a particle, I have to create a variable.
-If I'm going to use different tests the same beggining or ending I can use Before/After hooks.
+If I want to take a screenshot of something in specific way, I have to create a variable.
+If I'm going to use different tests with the same beggining or ending I can use Before/After hooks.
+(to submit the screenshots on GITHUB, I have to go to my repository, click in Issues and then paste it into the issue message)
+Simplify the script:
+`package.json`, then put our config on the script, then to run it put in the terminal `npm (name of the script)`
+
+To inspect:
+`await page.pause()`, I can check my mistakes. When I'm done I have to delete this await.
+
+Videos and screenshoot:
+I have to go to `playwright.configs.ts` then I choose the option `only-on-failure/retain-on-failure`, everytime I have a mistake it creates a folder with videos and photos.
+
+## E2E Testing
+
+Negative scenario
+First I enter the page, sign in, then put invalis scenarios and it has to give me the error message
+
+Positive scenarios
+First I enter the page, sign in, then put valid scenarios and then expect some visible text in the web
