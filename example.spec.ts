@@ -74,7 +74,7 @@ test("Single element Screenshot", async ({ page }) => {
   await element.screenshot({ path: "single_element_screenshot.png" });
 });
 
-test.describe.parallel.only("Hooks", () => {
+test.describe.parallel("Hooks", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("http://example.com/");
   });

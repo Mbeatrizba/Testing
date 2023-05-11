@@ -75,3 +75,10 @@ First I enter the page, sign in, then put invalis scenarios and it has to give m
 
 Positive scenarios
 First I enter the page, sign in, then put valid scenarios and then expect some visible text in the web
+
+To Logout:
+`await page.goto (thepagesite/logout.html)`
+and `expect toHaveURL(thepagesit/index.html)`
+Run together to be faster
+
+In the beggining of the first test I just have o type `.parallel`
