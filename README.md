@@ -78,7 +78,21 @@ First I enter the page, sign in, then put valid scenarios and then expect some v
 
 To Logout:
 `await page.goto (thepagesite/logout.html)`
-and `expect toHaveURL(thepagesit/index.html)`
-Run together to be faster
+and `expect toHaveURL(thepagesit/index.html)`, this is the URL of the first page
 
+Run together to be faster:
 In the beggining of the first test I just have o type `.parallel`
+
+When I'm checking a page, I have:
+
+1. Inspect all the selectors
+2. See if all the buttons are correct
+
+If I have a clear button, I have to check if the selectors are empty after that:
+`const nameInput = await page.locator("#name");
+    const commentInput = await page.locator("#comment");
+    await expect(nameInput).toBeEmpty();
+    await expect(commentInput).toBeEmpty();`
+
+When I have a box to search in the end, after the normal steps, I have to:
+`await page.keyboard.press("Enter")`, so I can use the enter button to search.
