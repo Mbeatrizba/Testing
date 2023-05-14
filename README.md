@@ -96,3 +96,5 @@ If I have a clear button, I have to check if the selectors are empty after that:
 
 When I have a box to search in the end, after the normal steps, I have to:
 `await page.keyboard.press("Enter")`, so I can use the enter button to search.
+
+Practicing some tests
