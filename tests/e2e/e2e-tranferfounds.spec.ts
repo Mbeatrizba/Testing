@@ -17,7 +17,7 @@ test.describe("Tranfer Funds and make payments", () => {
     await page.click("#btn_submit");
 
     const boardHeader = await page.locator("h2.board-header");
-    await expect("boardHeader").toContainText("Verify");
+    await expect(boardHeader).toContainText("Verify");
 
     await page.click("#btn_submit");
 
