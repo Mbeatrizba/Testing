@@ -98,3 +98,11 @@ When I have a box to search in the end, after the normal steps, I have to:
 `await page.keyboard.press("Enter")`, so I can use the enter button to search.
 
 Practicing some tests
+
+## Page Objects Pattern
+
+A design pattern that creates an object repository for storing all web elements. It's useful to reduce code duplication and improves test casing mantenace.
+To create a page objects pattern I'm goingo to:
+`1.Create variables to my page locator;
+2.Create a constructor that assign selectors value to the locator;
+3.Create  methods to usethe locators to perform some actions in specific page objects.`
