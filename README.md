@@ -1,8 +1,17 @@
 # Learning how to use Playwright
 
 In this repository, I'm going to document my playwright learnings.
+To learn about QA and playwrighting I chose to follow the course, 'Learn Playwright an open source testing framework from Microsoft and also the best alternative to Cypress' on Udemy, which is a simple but very complete course and I had the opportunity to learn:
 
-## How I started the project
+- How to install, create, and set up multiple testing projects.
+- Web automation and interaction with elements using the Playwright API
+- Practice various real-world E2E testing examples
+
+Among other things
+
+## Before we start
+
+### Installing playwright
 
 To create a package where the project files will be stored, run:
 `npm init`
@@ -16,9 +25,9 @@ I'm going to use the framework playwright:
 To install all the frameworks:
 `npx playwright install`
 
-## Summary
+## What I learned so far
 
-#### How to start a login test
+### How to start a login test
 
 To start the code I need to import the @ playwright/test
 In order to know that I'm on the correct website, I look for the title.
@@ -29,7 +38,7 @@ I first verify that if I click in sign in I get an error.
 I can check if I'm testing the right page with other tools.
 If I have a lot of tests, and I want just to run some specific test I can use annotations and tags.
 
-## How I config the playwright
+### How I config the playwright
 
 -I first went to the root of the program and create a new file:
 `playwright.config.ts`
@@ -44,8 +53,6 @@ If I have a lot of tests, and I want just to run some specific test I can use an
 
 -To conclude, when I have all the configurations I export the config:
 `export default config;`
-
-## Summary2.0
 
 ### Reports
 
@@ -95,7 +102,7 @@ If I'm going to use different tests with the same beggining or ending I can use 
 
 `await page.pause()`, I can check my mistakes. When I'm done I have to delete this await.
 
-## E2E Testing
+### E2E Testing
 
 -Negative scenario
 
@@ -113,7 +120,7 @@ If I'm going to use different tests with the same beggining or ending I can use 
 
 - In the beggining of the first test I just have o type `.parallel`
 
-#### Buttons
+### Buttons
 
 If I have a clear button, I have to check if the selectors are empty after that:
 
@@ -127,10 +134,13 @@ await expect(commentInput).toBeEmpty();
 When I have a box to search in the end, after the normal steps, I have to:
 `await page.keyboard.press("Enter")`, so I can use the enter button to search.
 
-## Page Objects Pattern
+### Page Objects Pattern
+
+> _What is a design pattern?_
 
 A design pattern that creates an object repository for storing all web elements. It's useful to reduce code duplication and improves test casing mantenace.
--To create a page objects pattern I'm going to:
+
+- To create a page objects pattern I'm going to:
 
 ```sh
 import { expect, Locator, Page } from "@playwright/test";
@@ -202,3 +212,24 @@ async clickOnTab(tabName) {
 
 
 ```
+
+### Visual Regression Testing
+
+To create visual testing we have to create a new config folder
+_NOTE_: It's the same as playwright.config, but we turn the screenshot and video off, and we change the testDir.
+
+> _Regression test example_
+
+```sh
+test.describe("Visual Regression Testing Example", () => {
+test("Full Page Snapshot", async ({ page }) => {
+await page.goto("https://www.example.com");
+expect(await page.screenshot()).toMatchSnapshot("homepage.png");
+});
+});
+```
+
+To run the test we have to:
+`npx playwright test --config=visual.config.ts --project=chromium`
+The first time it will give an _error_, it will create a folder with the screenshot of the page. When you run it again, it will work.
+Every time we run the code, it will take a _screenshot and compare_ the screenshot of the browser with the first screenshot taken, if something changes, the program will _detect an error and the test will not run and it will show what changed and what the difference is_
