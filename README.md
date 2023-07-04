@@ -88,7 +88,7 @@ await page.screenshot and a path
 
 - Go to `playwright.configs.ts` then choose the option `only-on-failure/retain-on-failure`.Everytime I have a bug it creates a folder with videos and photos.
 
-                         **NOTE** - to submit the screenshots on GITHUB, I have to go to my repository, click in Issues and then paste it into the issue message
+> **NOTE** - to submit the screenshots on GITHUB, I have to go to my repository, click in Issues and then paste it into the issue message
 
 ### Before/After Hooks
 
@@ -213,9 +213,10 @@ async clickOnTab(tabName) {
 
 ```
 
-### Visual Regression Testing
+### Visual Regression Testing - Full Page Snapshots
 
 To create visual testing we have to create a new config folder
+
 _NOTE_: It's the same as playwright.config, but we turn the screenshot and video off, and we change the testDir.
 
 > _Regression test example_
@@ -231,5 +232,31 @@ expect(await page.screenshot()).toMatchSnapshot("homepage.png");
 
 To run the test we have to:
 `npx playwright test --config=visual.config.ts --project=chromium`
+
 The first time it will give an _error_, it will create a folder with the screenshot of the page. When you run it again, it will work.
 Every time we run the code, it will take a _screenshot and compare_ the screenshot of the browser with the first screenshot taken, if something changes, the program will _detect an error and the test will not run and it will show what changed and what the difference is_
+
+### Visual Regression Testing - Single Element Snapshots
+
+To do a single element snapshot I just need to create an variable
+
+```sh
+const pageElement =await page.(the element)
+```
+
+The rest of the process is the same
+
+### Update Snapshots
+
+When the application actually changes, the original screenshot will be outdated, so I need to modify them.
+There is two options:
+
+- I can go manually and delete them directory and run the test again
+- Playwright gives a function wich I can call to actually update all the snapshots.
+  Go to the terminal and call:
+
+```sh
+npx playwright test --config=visual.config.ts --project=chromium --update-snapshots
+```
+
+`
