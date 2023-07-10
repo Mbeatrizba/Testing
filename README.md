@@ -259,4 +259,27 @@ There is two options:
 npx playwright test --config=visual.config.ts --project=chromium --update-snapshots
 ```
 
-`
+### API TESTS
+
+API testing is a type of software testing that analyzes an application program interface (API) to verify that it fulfills its expected functionality, security, performance and reliability.
+The developer has to give the information to QA's be able to do the tests.
+I have to create a test, but instead of passing a page object
+
+```sh
+async ({page})
+```
+
+I pass a request object
+
+```sh
+async ({request})
+```
+
+wich gives an option to call the request on the API server.
+
+There is different types of Request Tests:
+
+- Get
+- Post
+- Put
+- Delete
