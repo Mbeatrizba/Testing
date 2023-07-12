@@ -283,3 +283,75 @@ There is different types of Request Tests:
 - Post
 - Put
 - Delete
+
+### CI/CD Integration
+
+- CI = Continuous Integration
+- CD = Continuous Deployment
+
+The goal is for teams to create pipelines [sequences of jobs] and jobs [lists of instructions] to be executed.
+
+> Example:
+> Devs create a Deployment Job to get their code into the server.
+> QAs create the Test Job to run the E2E tests on the server.
+
+[And then a pipeline is made]
+First you run the Deployment JOB and then you run the Test Job
+
+## Tips and Tricks
+
+### Test Info Object
+
+When I want to know all the playwright informantion, I have to put "testInfo" inside of a test, next to async
+
+```sh
+test("TestInfo Object", async ({ page }, testInfo) => {})
+```
+
+Then I go to the page I'm testing and then I have to call the the 'testInfo'
+
+```sh
+await page.goto(PAGE)
+console.log(testInfo)
+```
+
+If I want to know just some specific information, I have to put it on console.log
+
+```sh
+console.log(testInfo.title)
+```
+
+It is going to display just the title value
+
+### Skip Browser / Fixme annotation
+
+If I have a scenario or a feature which is not yet implemented in my application for only a specific browser, I'm going to skip that browser.
+
+> If my feature works in web kit and Firefox, but not in Chrome.
+
+```sh
+test("Test Skip Browser", async ({ page, browserName }) => {
+    test.skip(browserName === "chromium", "Feature not ready in chrome browser")
+      await page.goto('PAGE')
+)}
+```
+
+The fixme annotation, it's exactly the same as Skip Browser, but where is 'skip' I have to put 'fixme', it's use to identify where needs to be fixed.
+
+```sh
+test("Test Fixme Annotation", async ({ page, browserName }) => {
+    test.fixme(browserName === "chromium", "Test is not stable, needs revision")
+      await page.goto('PAGE')
+)}
+```
+
+### Retries
+
+It´s used tu re-run the tests when they are failing.
+I have to go to the terminal and add another flag and then I have to specify how many times the playwright should rerun the test
+
+```sh
+npx playwright test --config=playwright.config.ts --project=Chromium --retries=3
+```
+
+This is only run if the test fail, if it passes in the first try, it will not run any more times
